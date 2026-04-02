@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interactive Quiz Challenge</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@24,400,1,0" />
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="text-white antialiased">
+    <!-- Animated Background -->
+    <div class="bg-particles" id="particles"></div>
+
+    <!-- Main Container -->
+    <div class="min-h-screen flex items-center justify-center p-4">
+
+        <!-- Intro Screen -->
+        <div id="intro-container" class="glass-card rounded-3xl p-8 md:p-12 max-w-2xl w-full text-center fade-in">
+            <div class="mb-8">
+                <div class="w-20 h-20 mx-auto bg-gradient-to-br from-indigo-500 to-purple-600 rounded-2xl flex items-center justify-center mb-6 shadow-2xl shadow-indigo-500/30">
+                    <span class="material-symbols-rounded text-4xl">quiz</span>
+                </div>
+                <h1 class="text-4xl md:text-5xl font-bold mb-4">
+                    <span class="gradient-text">Quiz Challenge</span>
+                </h1>
+                <p class="text-slate-400 text-lg max-w-md mx-auto">
+                    Test your knowledge with our interactive quiz. Each correct answer earns you 100 points. Can you achieve a perfect score?
+                </p>
+            </div>
+
+            <div class="grid grid-cols-3 gap-4 mb-8 text-sm">
+                <div class="bg-slate-800/50 rounded-xl p-4 border border-slate-700">
+                    <span class="material-symbols-rounded text-indigo-400 mb-2">help_outline</span>
+                    <p class="text-slate-400">Multiple Choice</p>
+                </div>
+                <div class="bg-slate-800/50 rounded-xl p-4 border border-slate-700">
+                    <span class="material-symbols-rounded text-pink-400 mb-2">timer</span>
+                    <p class="text-slate-400">Timed Challenge</p>
+                </div>
+                <div class="bg-slate-800/50 rounded-xl p-4 border border-slate-700">
+                    <span class="material-symbols-rounded text-purple-400 mb-2">emoji_events</span>
+                    <p class="text-slate-400">Earn Points</p>
+                </div>
+            </div>
+
+            <button id="start-btn" class="btn-primary px-10 py-4 rounded-xl font-semibold text-lg flex items-center gap-3 mx-auto">
+                <span>Start Quiz</span>
+                <span class="material-symbols-rounded">arrow_forward</span>
+            </button>
+        </div>
+
+        <!-- Quiz Screen -->
+        <div id="quiz-container" class="glass-card rounded-3xl p-6 md:p-10 max-w-3xl w-full hidden">
+            <!-- Header -->
+            <div class="flex items-center justify-between mb-8">
+                <div class="question-counter px-4 py-2 rounded-full flex items-center gap-2">
+                    <span class="material-symbols-rounded text-pink-400 text-sm">format_list_numbered</span>
+                    <span id="question-progress" class="text-sm font-medium">Question 01 / 04</span>
+                </div>
+                <div class="score-badge px-4 py-2 rounded-full flex items-center gap-2">
+                    <span class="material-symbols-rounded text-indigo-400 text-sm">stars</span>
+                    <span id="score-display" class="text-sm font-bold">0 pts</span>
+                </div>
+            </div>
+
+            <!-- Progress Bar -->
+            <div class="progress-container h-2 mb-8">
+                <div id="progress-bar" class="progress-bar h-full rounded-full" style="width: 0%"></div>
+            </div>
+
+            <!-- Question -->
+            <div class="mb-8">
+                <h2 id="question-text" class="text-xl md:text-2xl font-semibold leading-relaxed">
+                    Loading question...
+                </h2>
+            </div>
+
+            <!-- Options -->
+            <div id="options-stack" class="space-y-3 mb-8">
+                <!-- Options will be dynamically inserted here -->
+            </div>
+
+            <!-- Next Button -->
+            <div class="flex justify-end">
+                <button id="next-btn" class="btn-primary px-8 py-3 rounded-xl font-semibold flex items-center gap-2 opacity-50 cursor-not-allowed" disabled>
+                    <span>Next Question</span>
+                    <span class="material-symbols-rounded">chevron_right</span>
+                </button>
+            </div>
+        </div>
+
+        <!-- Result Screen -->
+        <div id="result-container" class="glass-card rounded-3xl p-8 md:p-12 max-w-2xl w-full text-center hidden">
+            <div class="result-icon w-28 h-28 mx-auto rounded-full flex items-center justify-center mb-6 shadow-2xl" id="result-icon-container">
+                <span id="result-icon" class="material-symbols-rounded text-5xl">emoji_events</span>
+            </div>
+
+            <h2 id="result-message" class="text-3xl font-bold mb-2">Excellent!</h2>
+            <p class="text-slate-400 mb-8">You have completed the quiz challenge</p>
+
+            <div class="bg-slate-800/50 rounded-2xl p-6 mb-8 border border-slate-700">
+                <p class="text-slate-400 text-sm mb-2">Final Score</p>
+                <p id="final-score" class="text-5xl font-bold gradient-text">0 / 400</p>
+                <p id="result-percentage" class="text-slate-400 mt-2">0% Accuracy</p>
+            </div>
+
+            <div class="flex gap-4 justify-center">
+                <button id="restart-btn" class="btn-primary px-8 py-3 rounded-xl font-semibold flex items-center gap-2">
+                    <span class="material-symbols-rounded">replay</span>
+                    <span>Try Again</span>
+                </button>
+            </div>
+        </div>
+
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
